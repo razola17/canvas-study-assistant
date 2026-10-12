@@ -1,0 +1,72 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  }
+}
+
+@layer components {
+  .btn-primary {
+    @apply bg-blue-600 hover:bg-blue-700 text-white font-medium px-4 py-2 rounded-lg transition-colors duration-150 disabled:opacity-50 disabled:cursor-not-allowed;
+  }
+  
+  .btn-secondary {
+    @apply bg-white hover:bg-gray-50 text-gray-700 font-medium px-4 py-2 rounded-lg border border-gray-300 transition-colors duration-150 disabled:opacity-50;
+  }
+  
+  .btn-danger {
+    @apply bg-red-600 hover:bg-red-700 text-white font-medium px-4 py-2 rounded-lg transition-colors duration-150;
+  }
+  
+  .card {
+    @apply bg-white rounded-xl shadow-sm border border-gray-100 p-6;
+  }
+  
+  .input-field {
+    @apply w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent;
+  }
+  
+  .badge-easy {
+    @apply bg-green-100 text-green-800 text-xs font-medium px-2.5 py-0.5 rounded-full;
+  }
+  
+  .badge-medium {
+    @apply bg-yellow-100 text-yellow-800 text-xs font-medium px-2.5 py-0.5 rounded-full;
+  }
+  
+  .badge-hard {
+    @apply bg-red-100 text-red-800 text-xs font-medium px-2.5 py-0.5 rounded-full;
+  }
+}
+
+/* Scrollbar styling */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #f1f5f9;
+}
+::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #94a3b8;
+}
+
+/* Markdown content styles */
+.markdown-content h1 { @apply text-2xl font-bold mb-4 text-gray-900; }
+.markdown-content h2 { @apply text-xl font-semibold mb-3 mt-6 text-blue-700; }
+.markdown-content h3 { @apply text-lg font-semibold mb-2 mt-4 text-gray-800; }
+.markdown-content p { @apply mb-3 text-gray-700 leading-relaxed; }
+.markdown-content ul { @apply list-disc list-inside mb-3 space-y-1; }
+.markdown-content ol { @apply list-decimal list-inside mb-3 space-y-1; }
+.markdown-content li { @apply text-gray-700; }
+.markdown-content code { @apply bg-gray-100 px-1 py-0.5 rounded text-sm font-mono text-blue-700; }
+.markdown-content pre { @apply bg-gray-100 p-4 rounded-lg overflow-x-auto mb-3; }
+.markdown-content strong { @apply font-semibold text-gray-900; }
+.markdown-content em { @apply italic; }
+.markdown-content blockquote { @apply border-l-4 border-blue-300 pl-4 text-gray-600 italic mb-3; }
