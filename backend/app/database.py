@@ -8,7 +8,7 @@ from datetime import datetime
 
 import os
 
-DB_DIR = "/tmp" if (os.getenv("K_SERVICE") or os.getenv("FUNCTION_TARGET")) else "."
+DB_DIR = "/tmp" if (os.getenv("K_SERVICE") or os.getenv("FUNCTION_TARGET") or os.getenv("SPACE_ID")) else "."
 DATABASE_URL = f"sqlite+aiosqlite:///{DB_DIR}/canvas_study.db"
 
 engine = create_async_engine(DATABASE_URL, echo=False)

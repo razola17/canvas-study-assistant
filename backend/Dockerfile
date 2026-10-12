@@ -5,18 +5,30 @@ WORKDIR /app
 # Configuration de l'environnement Python
 ENV PYTHONUNBUFFERED=1 \
     PYTHONDONTWRITEBYTECODE=1 \
-    PORT=8080
+    PORT=7860
+
+# Création d'un utilisateur non-root pour Hugging Face Spaces
+RUN useradd -m -u 1000 user && \
+    mkdir -p /home/user/app && \
+    chown -R user:user /home/user
+
+ENV HOME=/home/user \
+    PATH=/home/user/.local/bin:$PATH
+
+WORKDIR /home/user/app
 
 # Installation des dépendances
-COPY requirements.txt .
+COPY --chown=user:user requirements.txt .
 RUN pip install --no-cache-dir --upgrade pip && \
     pip install --no-cache-dir -r requirements.txt
 
 # Copie du code source
-COPY . .
+COPY --chown=user:user . .
 
-# Exposition du port Cloud Run (défaut: 8080)
-EXPOSE 8080
+USER user
 
-# Lancement de FastAPI avec Uvicorn
-CMD exec uvicorn main:app --host 0.0.0.0 --port ${PORT}
+# Port Hugging Face Spaces
+EXPOSE 7860
+
+# Lancement de FastAPI
+CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "7860"]
